@@ -162,7 +162,7 @@ export default function Home() {
 							<A href="https://cartesia.ai">Cartesia</A>,{" "}
 							<A href="https://www.vad.ricky0123.com/">VAD</A>, and{" "}
 							<A href="https://vercel.com">Vercel</A>.{" "}
-							<A href="https://github.com/ai-ng/swift" target="_blank">
+							<A href="https://github.com/el3136/AI_Voice_Assistant" target="_blank">
 								Learn more
 							</A>
 							.
