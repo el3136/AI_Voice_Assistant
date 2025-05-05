@@ -7,7 +7,7 @@ Voxify is a fast AI voice assistant.
 -   [VAD](https://www.vad.ricky0123.com/) is used to detect when the user is talking, and run callbacks on speech segments.
 -   The app is a [Next.js](https://nextjs.org) project written in TypeScript and deployed to [Vercel](https://vercel.com).
 
-[![Deploy with Vercel](https://vercel.com/button)](ai-voice-assistant-gules.vercel.app)
+[![Deploy with Vercel]((ai-voice-assistant-gules.vercel.app))]
 
 ## Developing
 
