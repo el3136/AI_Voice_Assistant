@@ -1,9 +1,8 @@
-// app/admin/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card'; // adjust if using shadcn
-import { Bar, Pie } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 type CallLog = {
@@ -18,11 +17,14 @@ export default function AdminDashboard() {
   const [calls, setCalls] = useState<CallLog[]>([]);
 
   useEffect(() => {
-    // Replace with actual backend call (e.g., /api/admin/calls)
-    fetch('/api/admin/calls')
+    fetch('/api')
       .then(res => res.json())
       .then(data => setCalls(data));
   }, []);
+
+  const totalCalls = calls.length;
+  const averageDuration = 
+    calls.length > 0 ? (calls.reduce((acc, call) => acc + call.duration, 0) / calls.length).toFixed(2) : "0.00";
 
   const commonQuestions = calls.reduce((acc, call) => {
     acc[call.question] = (acc[call.question] || 0) + 1;
@@ -46,6 +48,14 @@ export default function AdminDashboard() {
 
       <Card>
         <CardContent className="p-4">
+          <h2 className="text-xl font-semibold mb-2">Overview</h2>
+          <p>Total Calls: {totalCalls}</p>
+          <p>Average Call Duration: {averageDuration} seconds</p>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-4">
           <h2 className="text-xl font-semibold mb-2">Common Questions</h2>
           <Bar data={barData} />
         </CardContent>
@@ -58,7 +68,7 @@ export default function AdminDashboard() {
             {calls.map(call => (
               <li key={call.id} className="border-b pb-2">
                 <strong>{call.user}</strong> asked <em>&quot;{call.question}&quot;</em> at{' '}
-                {new Date(call.timestamp).toLocaleString()} (Duration: {call.duration}s)
+                {new Date(call.timestamp).toLocaleString()} (Duration: {call.duration.toFixed(2)}s)
               </li>
             ))}
           </ul>
